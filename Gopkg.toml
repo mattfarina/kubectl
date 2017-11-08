@@ -1,0 +1,42 @@
+
+# Gopkg.toml example
+#
+# Refer to https://github.com/golang/dep/blob/master/docs/Gopkg.toml.md
+# for detailed Gopkg.toml documentation.
+#
+# required = ["github.com/user/thing/cmd/thing"]
+# ignored = ["github.com/user/project/pkgX", "bitbucket.org/user/project/pkgA/pkgY"]
+#
+# [[constraint]]
+#   name = "github.com/user/project"
+#   version = "1.0.0"
+#
+# [[constraint]]
+#   name = "github.com/user/project2"
+#   branch = "dev"
+#   source = "github.com/myfork/project2"
+#
+# [[override]]
+#  name = "github.com/x/y"
+#  version = "2.4.0"
+
+[[constraint]]
+  name = "k8s.io/client-go"
+  #version = "5.0.1"
+  branch = "master"
+
+[[constraint]]
+  name = "k8s.io/kubernetes"
+  #version = "1.8.2"
+  branch = "master"
+
+# kubectl uses a pkg within Kubernetes that uses an unreleased feature in
+# docker distribution.
+[[override]]
+  name = "github.com/docker/distribution"
+  branch = "master"
+
+# The markdown command uses a 1.x compatible version of the library. 2.0.0 is out.
+[[override]]
+  name = "github.com/russross/blackfriday"
+  version = "^1.4.2"
